@@ -1,0 +1,43 @@
+{
+  "root": true,
+  "ignorePatterns": ["lib.js", "lib.d.ts"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "import"
+  ],
+  "extends": [
+    "airbnb-typescript"
+  ],
+  "parserOptions": {
+    "project": ["tsconfig.json"],
+    "sourceType": "module"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "no-console": "off",
+    "no-debugger": "off",
+    "no-bitwise": "off",
+    "max-len": [2, 160, 2, {"ignoreUrls": true}],
+    "import/no-cycle": "off",
+    "import/prefer-default-export": "off",
+    "lines-between-class-members": "off",
+    "@typescript-eslint/lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
+    "no-nested-ternary": "off",
+    "object-curly-newline": "off", //["error", { "multiline": true, "minProperties": 8, "consistent": true }],
+    "quotes": ["error", "double"],
+    "@typescript-eslint/quotes": ["error", "double"],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [ "error", { "argsIgnorePattern": "^_",  "varsIgnorePattern": "^_", "caughtErrorsIgnorePattern": "^_" } ],
+    "no-underscore-dangle": ["error", { "allowAfterThis": true }],
+    "no-param-reassign": ["error", { "props": false }],
+    "react/prop-types": ["error", { "skipUndeclared": true }],
+    "@typescript-eslint/naming-convention": ["error", {"format": ["camelCase", "PascalCase", "UPPER_CASE"], "leadingUnderscore": "allow", "selector": "default"}],
+    "class-methods-use-this": "off"
+  }
+}

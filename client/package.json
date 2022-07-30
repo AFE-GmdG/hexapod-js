@@ -2,7 +2,45 @@
   "name": "hexapod-js-client",
   "version": "0.0.1",
   "description": "Web Frontend for Freenove big hexapod robot for raspberry pi",
+  "scripts": {
+    "prestart": "rimraf dist",
+    "start": "webpack serve --mode=development",
+    "prebuild": "rimraf dist",
+    "build": "webpack --mode=production",
+    "prebuilddev": "rimraf dist",
+    "builddev": "webpack --mode=development",
+    "buildWasm": "cd ../evolve-lib && node build.js",
+    "lint": "eslint --parser-options \"{'project': ['tsconfig.json'], 'sourceType': 'module'}\" ./src"
+  },
   "repository": "https://github.com/AFE-GmdG/hexapod-js",
   "author": "Andreas Friedel",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@emotion/react": "11.9.3",
+    "@emotion/styled": "11.9.3",
+    "@mui/icons-material": "5.8.4",
+    "@mui/material": "5.9.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "18.0.15",
+    "@types/react-dom": "18.0.6",
+    "@typescript-eslint/eslint-plugin": "5.31.0",
+    "@typescript-eslint/parser": "5.31.0",
+    "copy-webpack-plugin": "11.0.0",
+    "eslint": "8.20.0",
+    "eslint-config-airbnb-typescript": "17.0.0",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-jsx-a11y": "6.6.1",
+    "eslint-plugin-react": "7.30.1",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "html-webpack-plugin": "5.5.0",
+    "rimraf": "3.0.2",
+    "ts-loader": "9.3.1",
+    "typescript": "4.7.4",
+    "webpack": "5.74.0",
+    "webpack-cli": "4.10.0",
+    "webpack-dev-server": "4.9.3"
+  }
 }

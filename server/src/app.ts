@@ -1,4 +1,7 @@
+// import fs from 'fs/promises';
+
 import express from "express";
+// import spdy from "spdy";
 import bodyParser from "body-parser";
 import proxy from "express-http-proxy";
 
@@ -30,7 +33,9 @@ class App {
   }
 
   private initializeStaticFiles() {
-    this.app.use("/", proxy("http://localhost:5000"));
+    this.app.use("/", proxy("http://127.0.0.1:5000", {
+
+    }));
   }
 
   private initializeErrorHandling() {
@@ -41,10 +46,19 @@ class App {
     });
   }
 
-  public listen() {
+  public async listen() {
     this.app.listen(this.port, () => {
       console.log(`Listening on port ${this.port}`);
     });
+    // const key = await fs.readFile("./certificates/debug.key");
+    // const cert = await fs.readFile("./certificates/debug.crt");
+    // const server = spdy.createServer({ key, cert }, this.app);
+    // server.listen(this.port, (err?: any) => {
+    //   if (err) {
+    //     throw new Error(err);
+    //   }
+    //   console.log(`Listening on port ${this.port}`);
+    // });
   }
 }
 
