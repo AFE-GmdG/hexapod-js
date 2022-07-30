@@ -1,0 +1,13 @@
+[
+  {
+    "_id": "dea57fbe-4d00-46ac-a47b-100977c3d110",
+    "colName": "Hexapod-js API",
+    "created": "2022-07-30T09:57:03.731Z",
+    "sortNum": 10000,
+    "folders": [],
+    "settings": {
+      "headers": [],
+      "tests": []
+    }
+  }
+]

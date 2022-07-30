@@ -1,0 +1,8 @@
+{
+  "name": "hexapod-js-client",
+  "version": "0.0.1",
+  "description": "Web Frontend for Freenove big hexapod robot for raspberry pi",
+  "repository": "https://github.com/AFE-GmdG/hexapod-js",
+  "author": "Andreas Friedel",
+  "license": "MIT"
+}

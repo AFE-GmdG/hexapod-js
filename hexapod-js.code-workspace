@@ -1,0 +1,87 @@
+{
+  "folders": [
+    {
+      "name": "hexapod-js (Client)",
+      "path": "./client",
+    },
+    {
+      "name": "hexapod-js (Server)",
+      "path": "./server",
+    },
+  ],
+
+  "launch": {
+    "configurations": [],
+    "compounds": [],
+  },
+
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [],
+  },
+
+  "settings": {
+    "editor.scrollBeyondLastLine": true,
+    "editor.minimap.enabled": true,
+    "editor.wordWrap": "off",
+    "editor.tabCompletion": "on",
+    "editor.cursorBlinking": "smooth",
+    "editor.mouseWheelZoom": true,
+    "editor.renderWhitespace": "trailing",
+    "editor.guides.indentation": true,
+    "editor.detectIndentation": true,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+
+    "explorer.compactFolders": false,
+    "explorer.openEditors.visible": 0,
+
+    "files.autoSave": "off",
+    "files.eol": "\n",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+
+    "files.exclude": {
+      "**/.vscode": true,
+      "**/node_modules": true,
+      "**/dist": true,
+      ".git": true,
+      "**/.gitignore": true,
+      "**/.eslintignore": true,
+      "**/.eslintrc.json": true,
+      "**/*lock.json": true,
+      "**/*.lock": true,
+      "**/*.log": true,
+    },
+
+    "typescript.suggest.autoImports": false,
+    "typescript.suggest.paths": true,
+    "typescript.updateImportsOnFileMove.enabled": "never",
+    "typescript.format.insertSpaceAfterCommaDelimiter": true,
+    "typescript.format.insertSpaceAfterSemicolonInForStatements": true,
+    "typescript.format.insertSpaceBeforeAndAfterBinaryOperators": true,
+    "typescript.format.insertSpaceAfterKeywordsInControlFlowStatements": true,
+    "typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": true,
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": false,
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": false,
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": false,
+    "typescript.format.placeOpenBraceOnNewLineForFunctions": false,
+    "typescript.format.placeOpenBraceOnNewLineForControlBlocks": false,
+
+    "javascript.format.insertSpaceAfterCommaDelimiter": true,
+    "javascript.format.insertSpaceAfterSemicolonInForStatements": true,
+    "javascript.format.insertSpaceBeforeAndAfterBinaryOperators": true,
+    "javascript.format.insertSpaceAfterKeywordsInControlFlowStatements": true,
+    "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": true,
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": false,
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": false,
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": false,
+    "javascript.format.placeOpenBraceOnNewLineForFunctions": false,
+    "javascript.format.placeOpenBraceOnNewLineForControlBlocks": false,
+
+    "thunder-client.saveToWorkspace": true,
+    "thunder-client.workspaceRelativePath": "../server/Thunder",
+  },
+}

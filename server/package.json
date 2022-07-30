@@ -1,0 +1,32 @@
+{
+  "name": "hexapod-js-server",
+  "version": "0.0.1",
+  "description": "Nodejs based server for Freenove big hexapod robot for raspberry pi",
+  "scripts": {
+    "prestart": "rimraf ./dist && webpack --mode=development",
+    "start": "node ./dist/server.js",
+    "prebuild": "rimraf ./dist",
+    "build": "webpack --mode=production",
+    "prebuilddev": "rimraf ./dist",
+    "builddev": "webpack --mode=development",
+    "prewatch": "rimraf ./dist",
+    "watch": "webpack --mode=development --watch"
+  },
+  "repository": "https://github.com/AFE-GmdG/hexapod-js",
+  "author": "Andreas Friedel",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "1.20.0",
+    "express": "4.18.1",
+    "express-http-proxy": "1.6.3"
+  },
+  "devDependencies": {
+    "@types/express": "4.17.13",
+    "@types/express-http-proxy": "1.6.3",
+    "rimraf": "3.0.2",
+    "ts-loader": "9.3.1",
+    "typescript": "4.7.4",
+    "webpack": "5.74.0",
+    "webpack-cli": "4.10.0"
+  }
+}
