@@ -10,11 +10,12 @@ import { ThemeProvider } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 
+import PageFooter from "./components/pageFooter";
 import PageHeader from "./components/pageHeader";
 
-import theme from "./theme";
+import defaultTheme from "./theme";
 
-const ContextBox = styled(Box)({
+const ContextBox = styled(Box)(({ theme }) => ({
   position: "relative",
   flex: "1 0 0px",
   overflow: "auto",
@@ -22,10 +23,9 @@ const ContextBox = styled(Box)({
   flexDirection: "column",
   alignItems: "strech",
   justifyContent: "space-between",
-}, props => ({
-  backgroundColor: props.theme.palette.background.default,
-  padding: props.theme.spacing(1, 2),
-  gap: props.theme.spacing(2),
+  backgroundColor: theme.palette.background.default,
+  padding: theme.spacing(1, 2),
+  gap: theme.spacing(2),
 }));
 
 const App: React.FC = () => {
@@ -35,6 +35,7 @@ const App: React.FC = () => {
       <ContextBox>
         <Button variant="contained">Hello, World!</Button>
       </ContextBox>
+      <PageFooter />
     </>
   );
 };
@@ -42,7 +43,7 @@ const App: React.FC = () => {
 const appDiv = document.getElementById("app");
 const root = createRoot(appDiv!);
 root.render(
-  <ThemeProvider theme={theme}>
+  <ThemeProvider theme={defaultTheme}>
     <GlobalStyles styles={{
       html: {
         height: "100%",
@@ -56,7 +57,6 @@ root.render(
         overflow: "hidden",
         margin: 0,
       },
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       "#app": {
         display: "flex",
         flexDirection: "column",

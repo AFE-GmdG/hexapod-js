@@ -37,7 +37,19 @@
     "no-underscore-dangle": ["error", { "allowAfterThis": true }],
     "no-param-reassign": ["error", { "props": false }],
     "react/prop-types": ["error", { "skipUndeclared": true }],
-    "@typescript-eslint/naming-convention": ["error", {"format": ["camelCase", "PascalCase", "UPPER_CASE"], "leadingUnderscore": "allow", "selector": "default"}],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "format": ["camelCase", "PascalCase", "UPPER_CASE"],
+        "leadingUnderscore": "allow",
+        "selector": "default"
+      },
+      {
+        "format": null,
+        "selector": "objectLiteralProperty",
+        "filter": "^[#&$]?"
+      }
+    ],
     "class-methods-use-this": "off"
   }
 }
