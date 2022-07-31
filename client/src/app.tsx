@@ -1,5 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { styled } from "@mui/material/styles";
 import GlobalStyles from "@mui/material/GlobalStyles";
@@ -8,10 +9,11 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 
 import PageFooter from "./components/pageFooter";
 import PageHeader from "./components/pageHeader";
+
+import Slash from "./views/slash";
 
 import defaultTheme from "./theme";
 
@@ -23,20 +25,22 @@ const ContextBox = styled(Box)(({ theme }) => ({
   flexDirection: "column",
   alignItems: "strech",
   justifyContent: "space-between",
-  backgroundColor: theme.palette.background.default,
+  backgroundColor: "#484848",
   padding: theme.spacing(1, 2),
   gap: theme.spacing(2),
 }));
 
 const App: React.FC = () => {
   return (
-    <>
+    <BrowserRouter>
       <PageHeader />
       <ContextBox>
-        <Button variant="contained">Hello, World!</Button>
+        <Routes>
+          <Route path="/" element={<Slash />} />
+        </Routes>
       </ContextBox>
       <PageFooter />
-    </>
+    </BrowserRouter>
   );
 };
 

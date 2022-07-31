@@ -81,6 +81,10 @@ const config = {
       },
     }),
   ],
+
+  watchOptions: {
+    ignored: /node_modules/,
+  },
 };
 
 module.exports = (_env, argv) => {

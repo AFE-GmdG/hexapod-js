@@ -51,6 +51,10 @@ const config = {
 
   plugins: [
   ],
+
+  watchOptions: {
+    ignored: /node_modules/,
+  },
 };
 
 module.exports = (_env, argv) => {
