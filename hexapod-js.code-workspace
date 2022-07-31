@@ -8,6 +8,10 @@
       "name": "hexapod-js (Server)",
       "path": "./server",
     },
+    {
+      "name": "hexapod-js (Tests)",
+      "path": "./tests",
+    },
   ],
 
   "launch": {

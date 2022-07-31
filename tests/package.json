@@ -1,0 +1,12 @@
+{
+  "name": "hexapod-js-tests",
+  "version": "0.0.1",
+  "description": "Tests",
+  "main": "src/index.js",
+  "repository": "https://github.com/AFE-GmdG/hexapod-js",
+  "author": "Andreas Friedel",
+  "license": "MIT",
+  "dependencies": {
+    "i2c-bus": "5.2.2"
+  }
+}

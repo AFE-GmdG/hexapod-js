@@ -1,4 +1,5 @@
 // import fs from 'fs/promises';
+import { Server } from 'http';
 
 import express from "express";
 // import spdy from "spdy";
@@ -10,10 +11,12 @@ import { Controllers } from "./controllers";
 class App {
   public app: express.Application;
   public port: number;
+  private server: Server | null;
 
   constructor(controllers: Controllers, port: number) {
     this.app = express();
     this.port = port;
+    this.server = null;
 
     this.initializeMiddlewares();
     this.initializeControllers(controllers);
@@ -47,9 +50,14 @@ class App {
   }
 
   public async listen() {
-    this.app.listen(this.port, () => {
-      console.log(`Listening on port ${this.port}`);
+    this.server = await new Promise<Server>((resolve) => {
+      const server = this.app.listen(this.port, () => {
+        console.log(`Listening on port ${this.port}`);
+        resolve(server);
+      });
     });
+
+    return this.server;
     // const key = await fs.readFile("./certificates/debug.key");
     // const cert = await fs.readFile("./certificates/debug.crt");
     // const server = spdy.createServer({ key, cert }, this.app);
@@ -59,6 +67,16 @@ class App {
     //   }
     //   console.log(`Listening on port ${this.port}`);
     // });
+  }
+
+  public stop() {
+    return new Promise<Error | undefined>((resolve) => {
+      if (this.server) {
+        this.server.close(resolve);
+      } else {
+        resolve(undefined);
+      }
+    });
   }
 }
 
