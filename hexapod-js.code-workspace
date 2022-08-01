@@ -39,7 +39,7 @@
         "type": "node",
         "request": "launch",
         "name": "Launch Server",
-        "program": "${workspaceFolder:hexapod-js (Server)}/src/server.js",
+        "program": "${workspaceFolder:hexapod-js (Server)}/src/index.js",
         "runtimeArgs": [
           "--preserve-symlinks",
         ],
@@ -185,6 +185,17 @@
     "thunder-client.saveToWorkspace": true,
     "thunder-client.workspaceRelativePath": "../server/Thunder",
 
-    "remote.SSH.defaultForwardedPorts": [],
+    "remote.SSH.defaultForwardedPorts": [
+      {
+        "name": "serverPort",
+        "localPort": 5000,
+        "remotePort": 5000,
+      },
+      {
+        "name": "devProxyPort",
+        "localPort": 3000,
+        "remotePort": 3000,
+      },
+    ],
   },
 }

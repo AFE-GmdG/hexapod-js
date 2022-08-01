@@ -1,4 +1,4 @@
-import { delay, mapValue, hexPad8Bit } from "./common.js";
+import { delay, mapValue, hexPad8Bit } from "../common.js";
 import PCA9685, { ADDR_0x40, ADDR_0x41 } from "./pca9685.js";
 
 class Servo {

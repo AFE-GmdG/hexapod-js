@@ -1,6 +1,6 @@
 import i2c from "i2c-bus";
 
-import { delay, hexPad8Bit, hexPad16Bit } from "./common.js";
+import { delay, hexPad8Bit, hexPad16Bit } from "../common.js";
 
 export const ADDR_0x40 = 0x40;
 export const ADDR_0x41 = 0x41;

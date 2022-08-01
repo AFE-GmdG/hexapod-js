@@ -1,20 +1,27 @@
-const i2c = require("i2c-bus");
+const process = require("process");
+const pigpio = require("pigpio");
+const Gpio = pigpio.Gpio;
 
-console.log("Opening i2c bus...");
-const bus = i2c.openPromisified(1);
+pigpio.initialize();
 
-const ADDRESS = 0x40;
-const REG_MODE1 = 0x00;
+console.log(`Hardware Revision: ${pigpio.hardwareRevision().toString(16)}`);
 
-bus.then((i2c1) => {
-  console.log("i2c bus opened");
+let iv;
+let led;
 
-  return Promise.all([
-    i2c1,
-    i2c1.readByte(ADDRESS, REG_MODE1),
-  ]);
-}).then(([i2c1, data]) => {
-  console.log(`data: ${data}`);
+process.on("SIGINT", () => {
+  console.log("Cleaning up...");
+  if (led) {
+    led.digitalWrite(0);
+  }
+  pigpio.terminate();
+  clearInterval(iv);
+  process.exit(0);
+});
 
-  return i2c1.close();
-}).catch(console.error);
+led = new Gpio(17, { mode: Gpio.OUTPUT });
+led.trigger
+
+iv = setInterval(() => {
+  led.digitalWrite(led.digitalRead() ^ 1);
+}, 3000);
