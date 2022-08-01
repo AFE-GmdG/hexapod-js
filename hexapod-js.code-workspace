@@ -29,35 +29,40 @@
           "webpack:///./*": "${workspaceFolder:hexapod-js (Client)}/src/*",
           "webpack:///*": "*",
         },
+        "presentation": {
+          "hidden": false,
+          "group": "02 - Hexapod",
+          "order": 1
+        }
       },
       {
         "type": "node",
         "request": "launch",
         "name": "Launch Server",
-        "program": "${workspaceFolder:hexapod-js (Server)}/dist/server.js",
+        "program": "${workspaceFolder:hexapod-js (Server)}/src/server.js",
         "runtimeArgs": [
           "--preserve-symlinks",
         ],
         "cwd": "${workspaceFolder:hexapod-js (Server)}",
-        "outFiles": [
-          "${workspaceFolder:hexapod-js (Server)}/dist/*.js",
-          "!**/node_modules/**"
-        ],
         "args": [
         ],
-        "preLaunchTask": "build-server",
-        "sourceMaps": true,
-        "sourceMapPathOverrides": {
-          "webpack:///./*": "${workspaceFolder:hexapod-js (Server)}/src/*",
-          "webpack:///*": "*",
-        },
         "console": "internalConsole",
+        "presentation": {
+          "hidden": false,
+          "group": "02 - Hexapod",
+          "order": 2
+        }
       },
     ],
     "compounds": [
       {
         "name": "Launch",
         "configurations": ["Launch Server", "Launch Frontend"],
+        "presentation": {
+          "hidden": false,
+          "group": "01 - Workspace",
+          "order": 1
+        }
       },
     ],
   },
@@ -107,44 +112,6 @@
           "panel": "shared",
         },
         "isBackground": true,
-        "promptOnClose": false,
-      }, {
-        "label": "build-server",
-        "type": "process",
-        "command": "yarn",
-        "windows": {
-          "command": "yarn.cmd",
-        },
-        "args": [
-          "--cwd",
-          "${workspaceFolder:hexapod-js (Server)}",
-          "builddev",
-        ],
-        "problemMatcher": {
-          "owner": "webpack",
-          "fileLocation": "absolute",
-          "source": "webpack",
-          "pattern": [
-            {
-              "regexp": "^\\[tsl\\] ERROR in (.*)\\((\\d+),(\\d+)\\)$",
-              "file": 1,
-              "line": 2,
-              "column": 3,
-            },
-            {
-              "regexp": "^\\s*(.*)$",
-              "message": 1,
-            },
-          ],
-        },
-        "group": "none",
-        "presentation": {
-          "echo": true,
-          "reveal": "silent",
-          "focus": false,
-          "panel": "shared",
-        },
-        "isBackground": false,
         "promptOnClose": false,
       },
     ],
