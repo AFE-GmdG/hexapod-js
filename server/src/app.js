@@ -37,7 +37,7 @@ class App {
   #initializeMiddlewares() {
     // Developer Proxy must be used before the body parser.
     this.#app.use("/", proxy("http://127.0.0.1:5000", {
-      filter: (req) => req.path.startsWith("/api") || req.path.startsWith("/io"),
+      filter: (req) => !(req.path.startsWith("/api") || req.path.startsWith("/io")),
     }));
     this.#app.use(bodyParser.json());
     // this.app.use(bodyParser.urlencoded({ extended: true }));

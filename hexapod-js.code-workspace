@@ -41,12 +41,15 @@
         "name": "Launch Server",
         "program": "${workspaceFolder:hexapod-js (Server)}/src/index.js",
         "runtimeArgs": [
-          "--preserve-symlinks",
+          // "--preserve-symlinks",
         ],
         "cwd": "${workspaceFolder:hexapod-js (Server)}",
         "args": [
+          "test",
+          "Socket.IO",
         ],
         "console": "internalConsole",
+        "internalConsoleOptions": "openOnSessionStart",
         "presentation": {
           "hidden": false,
           "group": "02 - Hexapod",

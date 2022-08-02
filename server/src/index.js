@@ -5,6 +5,7 @@
 import { program, Argument, Option, InvalidArgumentError } from "commander";
 
 import servoTest from "./tests/servo.js";
+import socketTest from "./tests/express/server.js";
 
 /**
  * Parses the port command line argument.
@@ -54,7 +55,7 @@ program
   .description("run a hexapod tests")
   .addArgument(
     new Argument("module", "the module to test")
-      .choices(["Servo", "Led", "Buzzer", "Camera", "Battery", "Gyro", "Ultrasonic"])
+      .choices(["Servo", "Led", "Buzzer", "Camera", "Battery", "Gyro", "Ultrasonic", "Socket.IO"])
       .argOptional()
   )
   .addOption(
@@ -62,7 +63,7 @@ program
   )
   .action(
     /**
-     * @param {"Servo" | "Led" | "Buzzer" | "Camera" | "Battery" | "Gyro" | "Ultrasonic"} module The module to test.
+     * @param {"Servo" | "Led" | "Buzzer" | "Camera" | "Battery" | "Gyro" | "Ultrasonic" | "Socket.IO"} module The module to test.
      * @param {{interactive?: boolean}} options Interactive mode.
      */
     async (module, options) => {
@@ -78,6 +79,9 @@ program
       switch (module) {
         case "Servo":
           await servoTest();
+          return;
+        case "Socket.IO":
+          await socketTest();
           return;
         default:
           console.log({ command: "test", module });
