@@ -1,3 +1,5 @@
+import process from "node:process";
+
 /**
  * Returns a promise that resolves after the given number of milliseconds.
  * @param {number} ms delay in milliseconds
@@ -5,7 +7,7 @@
  */
 export const delay = (ms) => {
   return new Promise((resolve) => setTimeout(resolve, Math.max(0, ms)));
-}
+};
 
 /**
  * Maps a value from one range to another.
@@ -30,7 +32,7 @@ export const mapValue = (value, fromLow, fromHigh, toLow, toHigh, clamp = false)
     }
   }
   return mapped;
-}
+};
 
 /**
  * Returns a formatted and padded 8 bit value.
@@ -48,4 +50,24 @@ export const hexPad8Bit = (value) => {
  */
 export const hexPad16Bit = (value) => {
   return `0x${value.toString(16).padStart(4, "0")}`;
-}
+};
+
+export const terminalSize = () => {
+  const {stdout, stderr} = process;
+  if (stdout && stdout.columns && stdout.rows) {
+    return {
+      columns: stdout.columns,
+      rows: stdout.rows,
+    };
+  }
+  if (stderr && stderr.columns && stderr.rows) {
+    return {
+      columns: stderr.columns,
+      rows: stderr.rows,
+    };
+  }
+  return {
+    columns: 80,
+    rows: 10,
+  };
+};

@@ -46,10 +46,9 @@
         "cwd": "${workspaceFolder:hexapod-js (Server)}",
         "args": [
           "test",
-          "Socket.IO",
+          "-i",
         ],
-        "console": "internalConsole",
-        "internalConsoleOptions": "openOnSessionStart",
+        "console": "integratedTerminal",
         "presentation": {
           "hidden": false,
           "group": "02 - Hexapod",

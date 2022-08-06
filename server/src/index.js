@@ -4,6 +4,7 @@
  */
 import { program, Argument, Option, InvalidArgumentError } from "commander";
 
+import interactiveTest from "./tests/interactive.js";
 import servoTest from "./tests/servo.js";
 import socketTest from "./tests/express/server.js";
 
@@ -73,6 +74,7 @@ program
       }
 
       if (options.interactive) {
+        await interactiveTest();
         return;
       }
 
