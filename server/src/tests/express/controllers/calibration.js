@@ -23,8 +23,8 @@ class CalibrationController {
   /**
    * Handle GET /calibration
    */
-  #get = (_request, response) => {
-    const calibrationData = readCalibrationData();
+  #get = async (_request, response) => {
+    const calibrationData = await readCalibrationData();
     response.setHeader("Content-Type", "application/json");
     response.json(calibrationData);
   }

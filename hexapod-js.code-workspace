@@ -41,7 +41,7 @@
         "name": "Launch Server",
         "program": "${workspaceFolder:hexapod-js (Server)}/src/index.js",
         "runtimeArgs": [
-          // "--preserve-symlinks",
+          "--preserve-symlinks",
         ],
         "cwd": "${workspaceFolder:hexapod-js (Server)}",
         "args": [

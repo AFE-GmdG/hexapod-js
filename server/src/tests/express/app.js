@@ -4,6 +4,8 @@
  */
 
 import http, { createServer } from "node:http";
+import path from "node:path";
+import process from "node:process";
 
 import bodyParser from "body-parser";
 import express from "express";
@@ -36,10 +38,24 @@ class App {
       transports: ["websocket"],
     });
 
+    this.#serveStandardAssets();
     this.#initializeMiddlewares();
     this.#initializeControllers();
     this.#initializeErrorHandling();
     this.#initializeSocketIO();
+  }
+
+  #serveStandardAssets() {
+    this.#app.use((request, response, next) => {
+      if (request.url === "/favicon.ico" && request.method === "GET") {
+        const faviconPath = path.join(process.cwd(), "public", "assets", "favicon.ico");
+        response.setHeader("Content-Type", "image/x-icon");
+        response.status(200);
+        response.sendFile(faviconPath);
+        return;
+      }
+      next();
+    });
   }
 
   #initializeMiddlewares() {
