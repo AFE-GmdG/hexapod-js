@@ -55,6 +55,25 @@
           "order": 2
         }
       },
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Launch Tests",
+        "program": "${workspaceFolder:hexapod-js (Tests)}/dist/index.js",
+        "runtimeArgs": [
+          "--preserve-symlinks",
+        ],
+        "cwd": "${workspaceFolder:hexapod-js (Tests)}",
+        "args": [
+        ],
+        "preLaunchTask": "build-tests",
+        "console": "integratedTerminal",
+        "presentation": {
+          "hidden": false,
+          "group": "02 - Hexapod",
+          "order": 3
+        }
+      },
     ],
     "compounds": [
       {
@@ -114,6 +133,28 @@
           "panel": "shared",
         },
         "isBackground": true,
+        "promptOnClose": false,
+      },
+      {
+        "label": "build-tests",
+        "type": "process",
+        "command": "yarn",
+        "windows": {
+          "command": "yarn.cmd",
+        },
+        "args": [
+          "--cwd",
+          "${workspaceFolder:hexapod-js (Tests)}",
+          "build",
+        ],
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "silent",
+          "focus": false,
+          "panel": "shared",
+        },
+        "isBackground": false,
         "promptOnClose": false,
       },
     ],
