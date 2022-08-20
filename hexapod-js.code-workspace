@@ -12,6 +12,18 @@
       "name": "hexapod-js (Tests)",
       "path": "./tests",
     },
+    {
+      "name": "Fake React",
+      "path": "./fakeReact",
+    },
+    {
+      "name": "React Blessed",
+      "path": "./react-blessed",
+    },
+    {
+      "name": "facebook/react",
+      "path": "../react",
+    }
   ],
 
   "launch": {
@@ -72,6 +84,45 @@
           "hidden": false,
           "group": "02 - Hexapod",
           "order": 3
+        }
+      },
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Launch Fake React",
+        "program": "${workspaceFolder:Fake React}/dist/index.js",
+        "runtimeArgs": [
+          "--preserve-symlinks",
+        ],
+        "cwd": "${workspaceFolder:Fake React}",
+        "args": [
+        ],
+        "preLaunchTask": "build-fake-react",
+        "console": "internalConsole",
+        "presentation": {
+          "hidden": false,
+          "group": "02 - Hexapod",
+          "order": 4
+        }
+      },
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Launch React Blessed Demo",
+        "program": "${workspaceFolder:React Blessed}/run.js",
+        "runtimeArgs": [
+          "--preserve-symlinks",
+        ],
+        "cwd": "${workspaceFolder:React Blessed}",
+        "args": [
+          "demo",
+          "demo"
+        ],
+        "console": "integratedTerminal",
+        "presentation": {
+          "hidden": false,
+          "group": "02 - Hexapod",
+          "order": 4
         }
       },
     ],
@@ -157,6 +208,28 @@
         "isBackground": false,
         "promptOnClose": false,
       },
+      {
+        "label": "build-fake-react",
+        "type": "process",
+        "command": "yarn",
+        "windows": {
+          "command": "yarn.cmd",
+        },
+        "args": [
+          "--cwd",
+          "${workspaceFolder:Fake React}",
+          "build",
+        ],
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "silent",
+          "focus": false,
+          "panel": "shared",
+        },
+        "isBackground": false,
+        "promptOnClose": false,
+      },
     ],
   },
 
@@ -172,6 +245,7 @@
     "editor.detectIndentation": true,
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
+    "editor.foldingMaximumRegions": 10000,
 
     "explorer.compactFolders": false,
     "explorer.openEditors.visible": 0,
@@ -181,21 +255,23 @@
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
     "files.watcherExclude": {
-      "**/.git/**": true,
-      "**/node_modules/**": true,
-    },
-
-    "files.exclude": {
-      "**/.vscode": true,
       "**/node_modules": true,
       "**/dist": true,
       ".git": true,
-      "**/.gitignore": true,
-      "**/.eslintignore": true,
-      "**/.eslintrc.json": true,
-      "**/*lock.json": true,
-      "**/*.lock": true,
-      "**/*.log": true,
+      "${workspaceFolder:facebook/react}": true,
+    },
+
+    "files.exclude": {
+      "**/.vscode": false,
+      "**/node_modules": false,
+      "**/dist": false,
+      ".git": false,
+      "**/.gitignore": false,
+      "**/.eslintignore": false,
+      "**/.eslintrc.json": false,
+      "**/*lock.json": false,
+      "**/*.lock": false,
+      "**/*.log": false,
     },
 
     "typescript.suggest.autoImports": false,

@@ -1,7 +1,17 @@
-import { FC } from "react";
+import React from "react";
 
-const App: FC = () => {
-  return <div>Hello World</div>;
+type AppProps = {
+  name: string;
+};
+
+const App: React.FC<AppProps> = ({
+  name,
+}) => {
+  return (
+    <box width={17} height="100%">
+      {`Hello, ${name}!`}
+    </box>
+  );
 }
 
 export default App;

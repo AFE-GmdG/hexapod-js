@@ -34,6 +34,7 @@
     "jsx": "preserve",                        /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
     "skipLibCheck": true,                     /* Skip type checking of declaration files. */
     "lib": [                                  /* Specify library files to be included in the compilation. */
+      "DOM",
       "ES2015",
       "ES2016",
       "ES2017",
@@ -45,6 +46,5 @@
   "exclude": [
     "**/dist/**/*",
     "**/node_modules/**/*",
-    "**/fiber (old)/**/*",
   ],
 }

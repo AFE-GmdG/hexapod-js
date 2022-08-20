@@ -1,15 +1,33 @@
-import { ReactNode } from "react";
-import ReactFiberReconciler, { HostConfig } from "react-reconciler";
-import { DefaultEventPriority } from "react-reconciler/constants";
+import ReactFiberReconciler, {
+  HostConfig,
+  OpaqueHandle,
+  OpaqueRoot,
+} from "react-reconciler";
 
-import type { Container, HostContext, Type } from "./types";
+import {
+  ConcurrentRoot,
+  DefaultEventPriority,
+} from "react-reconciler/constants";
 
-const hostConfig: HostConfig<
+import Box, { isBoxProps } from "../tui/box";
+import Screen from "../tui/screen";
+import Text from "../tui/text";
+
+import type {
+  Container,
+  HostContext,
+  Instance,
+  Props,
+  TextInstance,
+  Type,
+} from "./types";
+
+type TuiRootHostConfig = HostConfig<
   Type,            // Type
-  any,             // Props
+  Props,           // Props
   Container,       // Container
-  any,             // Instance
-  any,             // TextInstance
+  Instance,        // Instance
+  TextInstance,    // TextInstance
   any,             // SuspenseInstance
   any,             // HydratableInstance
   any,             // PublicInstance
@@ -17,152 +35,215 @@ const hostConfig: HostConfig<
   any,             // UpdatePayload
   any,             // ChildSet
   NodeJS.Timeout,  // TimeoutHandle
-  -1               // NoTimeout
-> = {
-  supportsMutation: true,
-  supportsPersistence: false,
-  createInstance: (type, props, rootContainer, hostContext, internalHandle) => {
+  null             // NoTimeout
+>;
+
+type TuiRootReconciler = ReactFiberReconciler.Reconciler<
+  Container,
+  Instance,        // Instance
+  TextInstance,    // TextInstance
+  any,             // SuspenseInstance
+  any              // PublicInstance
+>;
+
+class TuiRoot {
+  #hostConfig: TuiRootHostConfig;
+  #reconciler: TuiRootReconciler;
+  #internalRoot: OpaqueRoot;
+
+  constructor(screen: Screen) {
+    this.#hostConfig = this.#initializeHostConfig();
+    this.#reconciler = ReactFiberReconciler(this.#hostConfig);
+
+    const container: Container = {
+      _screen: screen,
+      _hostContext: {},
+    };
+
+    this.#internalRoot = this.#reconciler.createContainer(
+      container,       // containerInfo: Container
+      ConcurrentRoot,  // tag: RootTag
+      null,            // hydrationCallbacks: SuspenseHydrationCallbacks<any> | null
+      true,            // isStrictMode: boolean
+      null,            // concurrentUpdatesByDefaultOverride: boolean | null
+      "",              // identifierPrefix: string
+      () => { },       // onRecoverableError: (error: Error) => void
+      null             // transitionCallbacks: ReactFiberReconciler.TransitionTracingCallbacks | null
+    );
+  }
+
+  #initializeHostConfig(): TuiRootHostConfig {
+    return {
+      supportsMutation: true,
+      supportsPersistence: false,
+      createInstance: this.#createInstance,
+      createTextInstance: this.#createTextInstance,
+      appendInitialChild: this.#appendInitialChild,
+      finalizeInitialChildren: this.#finalizeInitialChildren,
+      prepareUpdate: (instance, type, oldProps, newProps, rootContainer, hostContext) => {
+        debugger;
+        throw new Error("Method not implemented.");
+      },
+      shouldSetTextContent: (type, props) => {
+        // return true for elements, that only have a single text content.
+        // currently only return false.
+        return false;
+      },
+      getRootHostContext: (rootContainer) => {
+        return rootContainer._hostContext;
+      },
+      getChildHostContext: (parentHostContext, type, rootContainer) => {
+        return rootContainer._hostContext;
+      },
+      getPublicInstance: (instance) => {
+        return instance;
+      },
+      prepareForCommit: (containerInfo) => {
+        // noop but must return `null` to avoid issues related to node removal
+        return null;
+      },
+      resetAfterCommit: (containerInfo) => {
+        // noop
+      },
+      preparePortalMount: (containerInfo) => {
+        debugger;
+        throw new Error("Method not implemented.");
+      },
+      scheduleTimeout: setTimeout,
+      cancelTimeout: clearTimeout,
+      noTimeout: null,
+      supportsMicrotask: true,
+      scheduleMicrotask: queueMicrotask,
+      isPrimaryRenderer: true,
+      warnsIfNotActing: true,
+      getCurrentEventPriority: () => DefaultEventPriority,
+      getInstanceFromNode: (node) => {
+        debugger;
+        throw new Error("Method not implemented.");
+      },
+      beforeActiveInstanceBlur: () => {
+        debugger;
+        throw new Error("Method not implemented.");
+      },
+      afterActiveInstanceBlur: () => {
+        debugger;
+        throw new Error("Method not implemented.");
+      },
+      prepareScopeUpdate: (scopeInstance, instance) => {
+        debugger;
+        throw new Error("Method not implemented.");
+      },
+      getInstanceFromScope: (scopeInstance) => {
+        debugger;
+        throw new Error("Method not implemented.");
+      },
+      detachDeletedInstance: (node) => {
+        debugger;
+        throw new Error("Method not implemented.");
+      },
+      appendChild: (parentInstance, child) => {
+        debugger;
+        throw new Error("Method not implemented.");
+      },
+      appendChildToContainer: this.#appendChildToContainer,
+      insertBefore: (parentInstance, child, beforeChild) => {
+        debugger;
+        throw new Error("Method not implemented.");
+      },
+      insertInContainerBefore: (container, child, beforeChild) => {
+        debugger;
+        throw new Error("Method not implemented.");
+      },
+      removeChild: (parentInstance, child) => {
+        debugger;
+        throw new Error("Method not implemented.");
+      },
+      removeChildFromContainer: (container, child) => {
+        debugger;
+        throw new Error("Method not implemented.");
+      },
+      resetTextContent: (instance) => {
+        debugger;
+        throw new Error("Method not implemented.");
+      },
+      commitTextUpdate: (textInstance, oldText, newText) => {
+        debugger;
+        throw new Error("Method not implemented.");
+      },
+      commitMount: (instance, type, props, internalInstanceHandle) => {
+        debugger;
+        throw new Error("Method not implemented.");
+      },
+      commitUpdate: (instance, updatePayload, type, prevProps, nextProps, internalHandle) => {
+        debugger;
+        throw new Error("Method not implemented.");
+      },
+      hideInstance: (instance) => {
+        debugger;
+        throw new Error("Method not implemented.");
+      },
+      hideTextInstance: (textInstance) => {
+        debugger;
+        throw new Error("Method not implemented.");
+      },
+      unhideInstance: (instance, props) => {
+        debugger;
+        throw new Error("Method not implemented.");
+      },
+      unhideTextInstance: (textInstance, text) => {
+        debugger;
+        throw new Error("Method not implemented.");
+      },
+      clearContainer: this.#clearContainer,
+      supportsHydration: false,
+    };
+  }
+
+  #createInstance(type: Type, props: Props, rootContainer: Container, _hostContext: HostContext, _internalHandle: OpaqueHandle) {
+    switch (type) {
+      case "box": {
+        if (!isBoxProps(props)) {
+          throw new Error("Invalid props");
+        }
+        return new Box(rootContainer._screen, props);
+      }
+      default:
+    };
+    debugger;
     throw new Error("Method not implemented.");
-  },
-  createTextInstance: (text, rootContainer, hostContext, internalHandle) => {
-    throw new Error("Method not implemented.");
-  },
-  appendInitialChild: (parentInstance, child) => {
-    throw new Error("Method not implemented.");
-  },
-  finalizeInitialChildren: (instance, type, props, rootContainer, hostContext) => {
-    throw new Error("Method not implemented.");
-  },
-  prepareUpdate: (instance, type, oldProps, newProps, rootContainer, hostContext) => {
-    throw new Error("Method not implemented.");
-  },
-  shouldSetTextContent: (type, props) => {
-    // return true for elements, that only have a single text content.
-    // currently only return false.
+  }
+
+  #createTextInstance(text: string, rootContainer: Container, _hostContext: HostContext, _internalHandle: OpaqueHandle) {
+    return new Text(rootContainer._screen, text);
+  }
+
+  #appendInitialChild(parentInstance: Instance, child: Instance | TextInstance) {
+    parentInstance.append(child);
+  }
+
+  #finalizeInitialChildren(_instance: Instance, _type: Type, _props: Props, _rootContainer: Container, _hostContext: HostContext) {
     return false;
-  },
-  getRootHostContext: (rootContainer) => {
-    return rootContainer._hostContext;
-  },
-  getChildHostContext: (parentHostContext, type, rootContainer) => {
-    return rootContainer._hostContext;
-  },
-  getPublicInstance: (instance) => {
-    return instance;
-  },
-  prepareForCommit: (containerInfo) => {
-    // noop but must return `null` to avoid issues related to node removal
-    return null;
-  },
-  resetAfterCommit: (containerInfo) => {
-    // noop
-  },
-  preparePortalMount: (containerInfo) => {
-    throw new Error("Method not implemented.");
-  },
-  scheduleTimeout: setTimeout,
-  cancelTimeout: clearTimeout,
-  noTimeout: -1,
-  supportsMicrotask: true,
-  scheduleMicrotask: queueMicrotask,
-  isPrimaryRenderer: true,
-  warnsIfNotActing: true,
-  getCurrentEventPriority: () => DefaultEventPriority,
-  getInstanceFromNode: (node) => {
-    throw new Error("Method not implemented.");
-  },
-  beforeActiveInstanceBlur: () => {
-    throw new Error("Method not implemented.");
-  },
-  afterActiveInstanceBlur: () => {
-    throw new Error("Method not implemented.");
-  },
-  prepareScopeUpdate: (scopeInstance, instance) => {
-    throw new Error("Method not implemented.");
-  },
-  getInstanceFromScope: (scopeInstance) => {
-    throw new Error("Method not implemented.");
-  },
-  detachDeletedInstance: (node) => {
-    throw new Error("Method not implemented.");
-  },
-  appendChild: (parentInstance, child) => {
-    throw new Error("Method not implemented.");
-  },
-  appendChildToContainer: (container, child) => {
-    throw new Error("Method not implemented.");
-  },
-  insertBefore: (parentInstance, child, beforeChild) => {
-    throw new Error("Method not implemented.");
-  },
-  insertInContainerBefore: (container, child, beforeChild) => {
-    throw new Error("Method not implemented.");
-  },
-  removeChild: (parentInstance, child) => {
-    throw new Error("Method not implemented.");
-  },
-  removeChildFromContainer: (container, child) => {
-    throw new Error("Method not implemented.");
-  },
-  resetTextContent: (instance) => {
-    throw new Error("Method not implemented.");
-  },
-  commitTextUpdate: (textInstance, oldText, newText) => {
-    throw new Error("Method not implemented.");
-  },
-  commitMount: (instance, type, props, internalInstanceHandle) => {
-    throw new Error("Method not implemented.");
-  },
-  commitUpdate: (instance, updatePayload, type, prevProps, nextProps, internalHandle) => {
-    throw new Error("Method not implemented.");
-  },
-  hideInstance: (instance) => {
-    throw new Error("Method not implemented.");
-  },
-  hideTextInstance: (textInstance) => {
-    throw new Error("Method not implemented.");
-  },
-  unhideInstance: (instance, props) => {
-    throw new Error("Method not implemented.");
-  },
-  unhideTextInstance: (textInstance, text) => {
-    throw new Error("Method not implemented.");
-  },
-  clearContainer: (container) => {
-    throw new Error("Method not implemented.");
-  },
-  supportsHydration: false,
-};
+  };
 
-const reconciler = ReactFiberReconciler(hostConfig);
+  #appendChildToContainer(container: Container, child: Instance | TextInstance) {
+    debugger;
+    container.append(child);
+  }
 
-const createTuiRenderer = () => {
-  return (reactElement: ReactNode, domElement: Container, callback: (() => void) | null) => {
-    // create a root container if it doesn't exist
-    if (!domElement._rootContainer) {
-      domElement._rootContainer = reconciler.createContainer(
-        domElement, // containerInfo: Container,
-        0,          // tag: RootTag,
-        null,       // hydrationCallbacks: null | SuspenseHydrationCallbacks<SuspenseInstance>,
-        true,       // isStrictMode: boolean,
-        null,       // concurrentUpdatesByDefaultOverride: null | boolean,
-        "tui",      // identifierPrefix: string,
-        () => {},   // onRecoverableError: (error: Error) => void,
-        null        // transitionCallbacks: null | TransitionTracingCallbacks,
-      );
+  #clearContainer(container: Container) {
+    debugger;
+    container.render();
+  }
+
+  render(children: React.ReactNode, callback?: () => void) {
+    if (this.#internalRoot === null) {
+      throw new Error("Cannot update an unmounted root.");
     }
 
-    // update the root container
-    return reconciler.updateContainer(
-      reactElement,
-      domElement._rootContainer,
-      null,
-      callback
-    );
-  };
+    this.#reconciler.updateContainer(children, this.#internalRoot, null, callback);
+  }
 };
 
-export const render = (element: ReactNode, screen: Container, callback: (() => void) | null) => {
-  const renderer = createTuiRenderer();
-  return renderer(element, screen, callback);
+export const createRoot = (screen: Screen) => {
+  return new TuiRoot(screen);
 };

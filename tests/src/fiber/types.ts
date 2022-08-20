@@ -1,18 +1,18 @@
+import type Box from "../tui/box";
+import type Screen from "../tui/screen";
+import type Text from "../tui/text";
+
 export type Type = "box";
 
+export type Props = {};
+
 export type Container = {
-  _rootContainer: any; // OpaqueRoot => node_modules/@types/react-reconciler/index.d.ts:885
+  _screen: Screen; // (_screen is the rootContainer: OpaqueRoot) => node_modules/@types/react-reconciler/index.d.ts:885
   _hostContext: HostContext;
 };
 
-export type HostContext = {
-};
+export type HostContext = {};
 
-export type TuiNodeInstance = {
-  type: string;
-  props: { [key: string]: any };
-  _eventListener: Function;
-  _updating: boolean;
-};
+export type Instance = Box;
 
-export type BasicEventType = "click" | "mouseenter" | "mouseleave";
+export type TextInstance = Text;

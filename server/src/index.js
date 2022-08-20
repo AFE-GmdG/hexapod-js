@@ -83,7 +83,7 @@ program
           await servoTest();
           return;
         case "Socket.IO":
-          await socketTest();
+          socketTest();
           return;
         default:
           console.log({ command: "test", module });
