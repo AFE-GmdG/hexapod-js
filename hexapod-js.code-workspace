@@ -13,10 +13,6 @@
       "path": "./tests",
     },
     {
-      "name": "Fake React",
-      "path": "./fakeReact",
-    },
-    {
       "name": "React Blessed",
       "path": "../react-blessed",
     },
@@ -84,25 +80,6 @@
           "hidden": false,
           "group": "02 - Hexapod",
           "order": 3
-        }
-      },
-      {
-        "type": "node",
-        "request": "launch",
-        "name": "Launch Fake React",
-        "program": "${workspaceFolder:Fake React}/dist/index.js",
-        "runtimeArgs": [
-          "--preserve-symlinks",
-        ],
-        "cwd": "${workspaceFolder:Fake React}",
-        "args": [
-        ],
-        "preLaunchTask": "build-fake-react",
-        "console": "internalConsole",
-        "presentation": {
-          "hidden": false,
-          "group": "02 - Hexapod",
-          "order": 4
         }
       },
       {
@@ -196,28 +173,6 @@
         "args": [
           "--cwd",
           "${workspaceFolder:hexapod-js (Tests)}",
-          "build",
-        ],
-        "group": "build",
-        "presentation": {
-          "echo": true,
-          "reveal": "silent",
-          "focus": false,
-          "panel": "shared",
-        },
-        "isBackground": false,
-        "promptOnClose": false,
-      },
-      {
-        "label": "build-fake-react",
-        "type": "process",
-        "command": "yarn",
-        "windows": {
-          "command": "yarn.cmd",
-        },
-        "args": [
-          "--cwd",
-          "${workspaceFolder:Fake React}",
           "build",
         ],
         "group": "build",
