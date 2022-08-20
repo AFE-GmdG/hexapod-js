@@ -18,7 +18,7 @@
     },
     {
       "name": "React Blessed",
-      "path": "./react-blessed",
+      "path": "../react-blessed",
     },
     {
       "name": "facebook/react",
